@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Linking External CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="form-container">
+        <!-- Registration Form with Fieldset and Legend as requested -->
+        <form id="regForm" onsubmit="return handleFormSubmit(event)">
+            <fieldset>
+                <legend> School - Registration Form</legend>
+
+                <!-- First Name -->
+                <div class="form-group">
+                    <label for="firstName">First Name: <span class="required">*</span></label>
+                    <input type="text" id="firstName" name="firstName" required>
+                </div>
+
+                <!-- Last Name -->
+                <div class="form-group">
+                    <label for="lastName">Last Name: <span class="required">*</span></label>
+                    <input type="text" id="lastName" name="lastName" required>
+                </div>
+
+                <!-- Username (5 to 12 characters, required) -->
+                <div class="form-group">
+                    <label for="username">Username (5-12 characters): <span class="required">*</span></label>
+                    <input type="text" id="username" name="username" minlength="5" maxlength="12" required>
+                </div>
+
+                <!-- Password (8 to 16 characters, hidden, required) -->
+                <div class="form-group">
+                    <label for="password">Password (8-16 characters): <span class="required">*</span></label>
+                    <input type="password" id="password" name="password" minlength="8" maxlength="16" required>
+                </div>
+
+                <!-- Confirm Password (8 to 16 characters, hidden, required) -->
+                <div class="form-group">
+                    <label for="confirmPassword">Confirm Password: <span class="required">*</span></label>
+                    <input type="password" id="confirmPassword" name="confirmPassword" minlength="8" maxlength="16" required>
+                </div>
+
+                <!-- Email (validated format) -->
+                <div class="form-group">
+                    <label for="email">Email Address: <span class="required">*</span></label>
+                    <input type="email" id="email" name="email" placeholder="example@domain.com" required>
+                </div>
+
+                <!-- Mobile Number (numeric only via pattern/input mode) -->
+                <div class="form-group">
+                    <label for="mobile">Mobile Number (Numeric only):</label>
+                    <input type="tel" id="mobile" name="mobile" pattern="[0-9]+" title="Please enter numbers only" placeholder="09123456789">
+                </div>
+
+                <!-- Gender (Radio button) -->
+                <div class="form-group">
+                    <label>Gender:</label>
+                    <div class="radio-group">
+                        <label><input type="radio" name="gender" value="Male" required> Male</label>
+                        <label><input type="radio" name="gender" value="Female"> Female</label>
+                        <label><input type="radio" name="gender" value="Other"> Other</label>
+                    </div>
+                </div>
+
+                <!-- Language Spoken (Checkbox) -->
+                <div class="form-group">
+                    <label>Language Spoken:</label>
+                    <div class="checkbox-group">
+                        <label><input type="checkbox" name="language" value="Cebuano"> Cebuano</label>
+                        <label><input type="checkbox" name="language" value="Tagalog"> Tagalog</label>
+                        <label><input type="checkbox" name="language" value="English"> English</label>
+                        <label><input type="checkbox" name="language" value="Others"> Others</label>
+                    </div>
+                </div>
+
+                <!-- Religion (Dropdown menu) -->
+                <div class="form-group">
+                    <label for="religion">Religion:</label>
+                    <select id="religion" name="religion">
+                        <option value="">--Select Religion--</option>
+                        <option value="Roman Catholic">Roman Catholic</option>
+                        <option value="Islam">Islam</option>
+                        <option value="Iglesia ni Cristo">Iglesia ni Cristo</option>
+                        <option value="Protestant">Protestant</option>
+                        <option value="Buddhism">Buddhism</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+
+                <!-- Address (Text area) -->
+                <div class="form-group">
+                    <label for="address">Address:</label>
+                    <textarea id="address" name="address" rows="3" placeholder="Enter your complete address here..."></textarea>
+                </div>
+
+                <!-- Date of Birth (DD-MM-YYYY format hint) -->
+                <div class="form-group">
+                    <label for="dob">Date of Birth (DD-MM-YYYY):</label>
+                    <input type="text" id="dob" name="dob" placeholder="DD-MM-YYYY" pattern="^(0[1-9]|[12][0-9]|3[01])-(0[1-9]|1[0-2])-\d{4}$" title="Format: DD-MM-YYYY">
+                </div>
+
+                <!-- Uploading a file or image ( 2x2 Picture) -->
+                <div class="form-group">
+                    <label for="fileUpload"> Upload 2x2 Picture:</label>
+                    <input type="file" id="fileUpload" name="fileUpload" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png">
+                </div>
+
+                <!-- Submit Button -->
+                <div class="form-group button-group">
+                    <button type="submit" id="submitBtn">Register Now</button>
+                </div>
+
+            </fieldset>
+        </form>
+    </div>
+
+    <!-- JavaScript to handle submission alert and password matching -->
+    <script>
+        function handleFormSubmit(event) {
+            event.preventDefault(); // Stop standard form refresh to show alert
+
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+
+            if (password !== confirmPassword) {
+                alert("Passwords do not match! Please check again.");
+                return false;
+            }
+
+            // Alert message required upon successful submission
+            alert("Registration was successfully submitted!");
+            
+            // Optional: Reset form after success
+            document.getElementById('regForm').reset();
+            return true;
+        }
+    </script>
+</body>
+</html>
